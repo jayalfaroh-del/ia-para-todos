@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#2563EB">
+    <meta name="description" content="IAPara Todos - Aprende inteligencia artificial de forma fácil y accesible para todas las edades">
+    <title>IAPara Todos - Inteligencia Artificial para Todos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul: #2563EB;
+            --azul-claro: #EFF6FF;
+            --verde: #16A34A;
+            --verde-claro: #F0FDF4;
+            --amarillo: #F59E0B;
+            --amarillo-claro: #FFFBEB;
+            --coral: #EF4444;
+            --coral-claro: #FEF2F2;
+            --morado: #7C3AED;
+            --morado-claro: #F5F3FF;
+            --naranja: #EA580C;
+            --naranja-claro: #FFF7ED;
+            --fondo: #F0F4FF;
+            --blanco: #ffffff;
+            --gris1: #F8FAFC;
+            --gris2: #E2E8F0;
+            --texto: #1E293B;
+            --texto-secundario: #475569;
+            --radio: 18px;
+            --radio-peq: 12px;
+            --sombra: 0 4px 20px rgba(0,0,0,0.09);
+            --sombra-hover: 0 10px 40px rgba(0,0,0,0.15);
+            --font-base: 17px;
+            --font-grande: 21px;
+            --font-gigante: 25px;
+        }
+
+        body.contraste {
+            --fondo: #000000;
+            --blanco: #000000;
+            --gris1: #000000;
+            --gris2: #333333;
+            --texto: #ffffff;
+            --texto-secundario: #ffff00;
+            --azul-claro: #000033;
+            --morado-claro: #1a0033;
+            --verde-claro: #003300;
+            --amarillo-claro: #333300;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            font-size: var(--font-base);
+            color: var(--texto);
+            background: var(--fondo);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body.grande {
+            font-size: var(--font-grande);
+        }
+
+        body.gigante {
+            font-size: var(--font-gigante);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Accessibility Bar */
+        .accessibility-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: #1E293B;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .accessibility-bar .group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .accessibility-bar button {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid transparent;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-height: 36px;
+        }
+
+        .accessibility-bar button:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .accessibility-bar button.on {
+            background: var(--azul);
+            border-color: var(--azul-claro);
+        }
+
+        .accessibility-bar .lang-btn {
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: sticky;
+            top: 57px;
+            z-index: 90;
+            background: var(--blanco);
+            padding: 14px 16px;
+            box-shadow: var(--sombra);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            overflow-x: auto;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .logo-ia {
+            color: var(--azul);
+        }
+
+        .logo-todos {
+            color: var(--morado);
+        }
+
+        .nav-pills {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .nav-pills li a {
+            display: block;
+            padding: 8px 16px;
+            background: var(--gris1);
+            color: var(--texto);
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .nav-pills li a:hover {
+            background: var(--azul-claro);
+            color: var(--azul);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--azul) 0%, var(--morado) 50%, #10B981 100%);
+            padding: 50px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-emoji {
+            font-size: 70px;
+            display: inline-block;
+            animation: bob 2s ease-in-out infinite;
+        }
+
+        @keyframes bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 900;
+            margin: 16px 0;
+            line-height: 1.2;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(90deg, #FEF3C7, #FDE68A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 24px;
+        }
+
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 28px;
+        }
+
+        .hero-chips span {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: var(--radio);
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s;
+            min-height: 44px;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--azul);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.25);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        /* Age Selector */
+        .age-section {
+            padding: 40px 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 26px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 24px;
+            color: var(--texto);
+        }
+
+        .age-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+        }
+
+        .age-card {
+            background: var(--blanco);
+            border: 3px solid var(--gris2);
+            border-radius: var(--radio);
+            padding: 20px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+
+        .age-card:hover {
+            border-color: var(--azul);
+            transform: translateY(-4px);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .age-card.on {
+            border-color: var(--azul);
+            background: var(--azul-claro);
+        }
+
+        .age-card .emoji {
+            font-size: 42px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .age-card .label {
+            font-weight: 800;
+            font-size: 15px;
+            color: var(--texto);
+        }
+
+        .age-card .range {
+            font-size: 13px;
+            color: var(--texto-secundario);
+            margin-top: 4px;
+        }
+
+        /* Warning Banner */
+        .warning-banner {
+            background: var(--amarillo-claro);
+            border-left: 5px solid var(--amarillo);
+            padding: 16px 20px;
+            margin: 0 16px 30px;
+            border-radius: 0 var(--radio-peq) var(--radio-peq) 0;
+            max-width: 1200px;
+        }
+
+        .warning-banner p {
+            color: #92400E;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Filters */
+        .filters-section {
+            padding: 0 16px 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 12px 24px;
+            border: 2px solid var(--gris2);
+            background: var(--blanco);
+            border-radius: 25px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--texto-secundario);
+            min-height: 44px;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--azul);
+            color: var(--azul);
+        }
+
+        .filter-btn.on {
+            background: var(--azul);
+            border-color: var(--azul);
+            color: white;
+        }
+
+        /* Modules Grid */
+        .modules-section {
+            padding: 20px 16px 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .module-card {
+            background: var(--blanco);
+            border-radius: var(--radio);
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: all 0.3s;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(18px);
+        }
+
+        .module-card.vis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .module-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .module-thumb {
+            position: relative;
+            aspect-ratio: 16/9;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .module-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .module-thumb .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+        }
+
+        .module-thumb:hover .play-btn {
+            transform: scale(1.15);
+        }
+
+        .play-btn::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid var(--azul);
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+
+        .badge-level {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+        }
+
+        .badge-duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .badge-yt {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #FF0000;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .module-content {
+            padding: 18px;
+        }
+
+        .module-content h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .module-content p {
+            color: var(--texto-secundario);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .module-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .channel-name {
+            font-size: 13px;
+            color: var(--texto-secundario);
+            font-weight: 600;
+        }
+
+        .btn-ver {
+            background: var(--azul);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--radio-peq);
+            font-weight: 700;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+
+        .btn-ver:hover {
+            background: #1d4ed8;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--texto-secundario);
+        }
+
+        .empty-message .emoji {
+            font-size: 60px;
+            margin-bottom: 16px;
+        }
+
+        /* Tools Section */
+        .tools-section {
+            background: var(--morado-claro);
+            padding: 50px 16px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tool-card {
+            background: var(--blanco);
+            border-radius: var(--radio);
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: all 0.25s;
+            box-shadow: var(--sombra);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--sombra-hover);
+        }
+
+        .tool-card .emoji {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .tool-card h4 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .tool-card p {
+            font-size: 14px;
+            color: var(--texto-secundario);
+            margin-bottom: 12px;
+        }
+
+        .badge-price {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .badge-price.gratis {
+            background: var(--verde-claro);
+            color: var(--verde);
+        }
+
+        .badge-price.freemium {
+            background: var(--amarillo-claro);
+            color: #B45309;
+        }
+
+        .badge-price.pago {
+            background: var(--coral-claro);
+            color: var(--coral);
+        }
+
+        /* Tips Section */
+        .tips-section {
+            padding: 50px 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tip-card {
+            background: var(--blanco);
+            border-radius: var(--radio);
+            padding: 24px;
+            box-shadow: var(--sombra);
+            border-left: 5px solid var(--morado);
+        }
+
+        .tip-card h4 {
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tip-card p {
+            color: var(--texto-secundario);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1E293B;
+            color: white;
+            padding: 40px 16px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 14px;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            opacity: 0.7;
+            text-decoration: none;
+            font-size: 14px;
+            transition: opacity 0.2s;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        /* Bottom Sheet */
+        .bottom-sheet-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+
+        .bottom-sheet-overlay.on {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .bottom-sheet {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--blanco);
+            border-radius: var(--radio) var(--radio) 0 0;
+            z-index: 250;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+        }
+
+        .bottom-sheet.on {
+            transform: translateY(0);
+        }
+
+        .sheet-content {
+            padding: 20px;
+            padding-bottom: 40px;
+        }
+
+        .drag-handle {
+            width: 40px;
+            height: 4px;
+            background: var(--gris2);
+            border-radius: 2px;
+            margin: 0 auto 16px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gris1);
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sheet-header {
+            margin-bottom: 20px;
+        }
+
+        .sheet-header .badge-level {
+            position: static;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .sheet-header h2 {
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .sheet-header .description {
+            color: var(--texto-secundario);
+            line-height: 1.6;
+        }
+
+        .btn-youtube {
+            width: 100%;
+            background: #FF0000;
+            color: white;
+            padding: 18px 24px;
+            border-radius: var(--radio);
+            font-family: inherit;
+            font-size: 18px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 24px 0;
+            min-height: 56px;
+            transition: all 0.2s;
+        }
+
+        .btn-youtube:hover {
+            background: #CC0000;
+            transform: scale(1.02);
+        }
+
+        .btn-youtube .icon {
+            background: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-youtube .icon::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 12px solid #FF0000;
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            margin-left: 2px;
+        }
+
+        .sheet-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .sheet-buttons .btn {
+            flex: 1;
+            justify-content: center;
+            background: var(--gris1);
+            color: var(--texto);
+            font-size: 14px;
+            padding: 12px;
+        }
+
+        .sheet-section {
+            margin-bottom: 24px;
+        }
+
+        .sheet-section h4 {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .learn-list {
+            list-style: none;
+        }
+
+        .learn-list li {
+            padding: 10px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            border-bottom: 1px solid var(--gris2);
+        }
+
+        .learn-list li:last-child {
+            border-bottom: none;
+        }
+
+        .learn-list .check {
+            color: var(--verde);
+            font-size: 18px;
+        }
+
+        .example-box {
+            background: var(--amarillo-claro);
+            border-radius: var(--radio-peq);
+            padding: 16px;
+            border-left: 4px solid var(--amarillo);
+        }
+
+        .example-box .label {
+            font-weight: 800;
+            color: #B45309;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .example-box p {
+            color: #92400E;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .resources-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .resource-chip {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .resource-chip:hover {
+            transform: scale(1.05);
+        }
+
+        /* Quiz */
+        .quiz-section {
+            background: var(--gris1);
+            border-radius: var(--radio);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .quiz-section h4 {
+            font-size: 17px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .quiz-question {
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--blanco);
+            border: 2px solid var(--gris2);
+            border-radius: var(--radio-peq);
+            cursor: pointer;
+            transition: all 0.2s;
+            min-height: 44px;
+        }
+
+        .quiz-option:hover:not(.disabled) {
+            border-color: var(--azul);
+        }
+
+        .quiz-option .letter {
+            width: 32px;
+            height: 32px;
+            background: var(--gris1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .quiz-option .text {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .quiz-option.correct {
+            background: var(--verde-claro);
+            border-color: var(--verde);
+        }
+
+        .quiz-option.correct .letter {
+            background: var(--verde);
+            color: white;
+        }
+
+        .quiz-option.incorrect {
+            background: var(--coral-claro);
+            border-color: var(--coral);
+        }
+
+        .quiz-option.incorrect .letter {
+            background: var(--coral);
+            color: white;
+        }
+
+        .quiz-option.disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        .quiz-feedback {
+            display: none;
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: var(--radio-peq);
+            font-weight: 700;
+            animation: fadeIn 0.3s;
+        }
+
+        .quiz-feedback.show {
+            display: block;
+        }
+
+        .quiz-feedback.ok {
+            background: var(--verde-claro);
+            color: var(--verde);
+        }
+
+        .quiz-feedback.fail {
+            background: var(--coral-claro);
+            color: var(--coral);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Video Embed - YouTube Iframe */
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: var(--radio);
+            margin-bottom: 20px;
+            background: #000;
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Floating Progress */
+        .floating-progress {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--azul);
+            color: white;
+            padding: 14px 20px;
+            border-radius: var(--radio);
+            box-shadow: var(--sombra-hover);
+            z-index: 150;
+            transform: translateY(120px);
+            transition: transform 0.35s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .floating-progress.show {
+            transform: translateY(0);
+        }
+
+        .floating-progress .icon {
+            font-size: 24px;
+        }
+
+        .floating-progress .count {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 26px;
+            }
+
+            .hero-emoji {
+                font-size: 55px;
+            }
+
+            .age-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .modules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-pills {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Accessibility Bar -->
+    <div class="accessibility-bar">
+        <div class="group">
+            <button onclick="tamTexto(1)" class="size-btn" data-es="A normal" data-en="A normal">A</button>
+            <button onclick="tamTexto(2)" class="size-btn" data-es="A+ grande" data-en="A+ large">A+</button>
+            <button onclick="tamTexto(3)" class="size-btn" data-es="A++ gigante" data-en="A++ huge">A++</button>
+            <button onclick="contraste()" class="contrast-btn" data-es="🎨 Contraste" data-en="🎨 Contrast">🎨</button>
+        </div>
+        <div class="group">
+            <button onclick="idioma('es')" class="lang-btn on" data-es="🇲🇽 ES" data-en="🇲🇽 ES">🇲🇽 ES</button>
+            <button onclick="idioma('en')" class="lang-btn" data-es="🇺🇸 EN" data-en="🇺🇸 EN">🇺🇸 EN</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-ia">IA</span><span class="logo-todos">Para Todos</span>
+        </div>
+        <ul class="nav-pills">
+            <li><a href="#edad" data-es="Edad" data-en="Age">Edad</a></li>
+            <li><a href="#lecciones" data-es="Lecciones" data-en="Lessons">Lecciones</a></li>
+            <li><a href="#herramientas" data-es="Herramientas" data-en="Tools">Herramientas</a></li>
+            <li><a href="#consejos" data-es="Consejos" data-en="Tips">Consejos</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <span class="hero-emoji">🤖</span>
+        <h1><span class="gradient" data-es="Inteligencia Artificial" data-en="Artificial Intelligence">Inteligencia Artificial</span><br><span data-es="para Todos" data-en="for Everyone">para Todos</span></h1>
+        <p class="hero-subtitle" data-es="Aprende a usar la IA en tu vida diaria de forma fácil, sin tecnicismos y desde cualquier edad. ¡Empieza hoy mismo!" data-en="Learn to use AI in your daily life easily, without technical jargon and at any age. Start today!">Aprende a usar la IA en tu vida diaria de forma fácil, sin tecnicismos y desde cualquier edad. ¡Empieza hoy mismo!</p>
+        <div class="hero-chips">
+            <span data-es="🎯 Gratis" data-en="🎯 Free">🎯 Gratis</span>
+            <span data-es="📱 Mobile-first" data-en="📱 Mobile-first">📱 Mobile-first</span>
+            <span data-es="🌎 Sin fronteras" data-en="🌎 Borderless">🌎 Sin fronteras</span>
+            <span data-es="♿ Accesible" data-en="♿ Accessible">♿ Accesible</span>
+        </div>
+        <div class="hero-buttons">
+            <a href="#lecciones" class="btn btn-primary" data-es="🚀Comenzar a Aprender" data-en="🚀 Start Learning">🚀 Comenzar a Aprender</a>
+            <a href="#herramientas" class="btn btn-secondary" data-es="🛠️Ver Herramientas" data-en="🛠️ See Tools">🛠️ Ver Herramientas</a>
+        </div>
+    </section>
+
+    <!-- Age Selector -->
+    <section class="age-section" id="edad">
+        <h2 class="section-title" data-es="¿Quién eres?" data-en="Who are you?">¿Quién eres?</h2>
+        <div class="age-grid">
+            <div class="age-card" data-age="nino" onclick="seleccionarEdad('nino')">
+                <span class="emoji">🧸</span>
+                <div class="label" data-es="Niño" data-en="Kid">Niño</div>
+                <div class="range">7-12</div>
+            </div>
+            <div class="age-card" data-age="teen" onclick="seleccionarEdad('teen')">
+                <span class="emoji">🎮</span>
+                <div class="label" data-es="Adolescente" data-en="Teen">Adolescente</div>
+                <div class="range">13-17</div>
+            </div>
+            <div class="age-card" data-age="joven" onclick="seleccionarEdad('joven')">
+                <span class="emoji">💼</span>
+                <div class="label" data-es="Joven Adulto" data-en="Young Adult">Joven Adulto</div>
+                <div class="range">18-35</div>
+            </div>
+            <div class="age-card" data-age="adulto" onclick="seleccionarEdad('adulto')">
+                <span class="emoji">🏠</span>
+                <div class="label" data-es="Adulto" data-en="Adult">Adulto</div>
+                <div class="range">36-59</div>
+            </div>
+            <div class="age-card" data-age="mayor" onclick="seleccionarEdad('mayor')">
+                <span class="emoji">👴</span>
+                <div class="label" data-es="Adulto Mayor" data-en="Senior">Adulto Mayor</div>
+                <div class="range">60+</div>
+            </div>
+            <div class="age-card on" data-age="todos" onclick="seleccionarEdad('todos')">
+                <span class="emoji">🌟</span>
+                <div class="label" data-es="Todos" data-en="Everyone">Todos</div>
+                <div class="range">-</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Warning Banner -->
+    <div class="warning-banner">
+        <p>🎬 <span data-es="Los videos se reproducen directamente en la app" data-en="Videos play directly in the app">Los videos se reproducen directamente en la app</span></p>
+    </div>
+
+    <!-- Level Filters -->
+    <section class="filters-section" id="lecciones">
+        <div class="filters">
+            <button class="filter-btn on" data-level="todos" onclick="filtrarNivel('todos')" data-es="Todos" data-en="All">Todos</button>
+            <button class="filter-btn" data-level="basico" onclick="filtrarNivel('basico')" data-es="Básico" data-en="Basic">Básico</button>
+            <button class="filter-btn" data-level="intermedio" onclick="filtrarNivel('intermedio')" data-es="Intermedio" data-en="Intermediate">Intermedio</button>
+            <button class="filter-btn" data-level="avanzado" onclick="filtrarNivel('avanzado')" data-es="Avanzado" data-en="Advanced">Avanzado</button>
+        </div>
+    </section>
+
+    <!-- Modules Grid -->
+    <section class="modules-section">
+        <div class="modules-grid" id="modulesGrid">
+            <!-- Modules will be rendered here -->
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="tools-section" id="herramientas">
+        <h2 class="section-title" data-es="Herramientas Gratuitas" data-en="Free Tools">Herramientas Gratuitas</h2>
+        <div class="tools-grid">
+            <a href="https://chat.openai.com" target="_blank" class="tool-card">
+                <span class="emoji">💬</span>
+                <h4>ChatGPT</h4>
+                <p data-es="Asistente de IA para conversaciones y tareas" data-en="AI assistant for conversations and tasks">Asistente de IA para conversaciones y tareas</p>
+                <span class="badge-price gratis">Gratis</span>
+            </a>
+            <a href="https://claude.ai" target="_blank" class="tool-card">
+                <span class="emoji">🧠</span>
+                <h4>Claude</h4>
+                <p data-es="IA enfocada en análisis y escritura" data-en="AI focused on analysis and writing">IA enfocada en análisis y escritura</p>
+                <span class="badge-price gratis">Gratis</span>
+            </a>
+            <a href="https://gemini.google.com" target="_blank" class="tool-card">
+                <span class="emoji">✨</span>
+                <h4>Gemini</h4>
+                <p data-es="Asistente IA de Google" data-en="Google's AI assistant">Asistente IA de Google</p>
+                <span class="badge-price gratis">Gratis</span>
+            </a>
+            <a href="https://copilot.microsoft.com" target="_blank" class="tool-card">
+                <span class="emoji">🤝</span>
+                <h4>Copilot</h4>
+                <p data-es="IA de Microsoft para productividad" data-en="Microsoft's AI for productivity">IA de Microsoft para productividad</p>
+                <span class="badge-price gratis">Gratis</span>
+            </a>
+            <a href="https://canva.com" target="_blank" class="tool-card">
+                <span class="emoji">🎨</span>
+                <h4>Canva AI</h4>
+                <p data-es="Diseño con inteligencia artificial" data-en="Design with artificial intelligence">Diseño con inteligencia artificial</p>
+                <span class="badge-price freemium">Freemium</span>
+            </a>
+            <a href="https://perplexity.ai" target="_blank" class="tool-card">
+                <span class="emoji">🔍</span>
+                <h4>Perplexity</h4>
+                <p data-es="Búsqueda respuestas con IA" data-en="AI-powered search answers">Búsqueda answers con IA</p>
+                <span class="badge-price gratis">Gratis</span>
+            </a>
+            <a href="https://suno.ai" target="_blank" class="tool-card">
+                <span class="emoji">🎵</span>
+                <h4>Suno</h4>
+                <p data-es="Crea música con IA" data-en="Create music with AI">Crea música con IA</p>
+                <span class="badge-price freemium">Freemium</span>
+            </a>
+            <a href="https://designer.microsoft.com" target="_blank" class="tool-card">
+                <span class="emoji">📐</span>
+                <h4>Microsoft Designer</h4>
+                <p data-es="Diseño gráfico con IA" data-en="Graphic design with AI">Diseño gráfico con IA</p>
+                <span class="badge-price gratis">Gratis</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section" id="consejos">
+        <h2 class="section-title" data-es="Consejos por Edad" data-en="Tips by Age">Consejos por Edad</h2>
+        <div class="tips-grid" id="tipsGrid">
+            <div class="tip-card" data-tip="nino">
+                <h4>🧸 <span data-es="Para Niños" data-en="For Kids">Para Niños</span></h4>
+                <p data-es="Usa la IA para aprender idiomas, resolver dudas de tareas y crear historias divertidas. ¡La IA es tu compañero de aventuras!" data-en="Use AI to learn languages, solve homework questions, and create fun stories. AI is your adventure companion!">Usa la IA para aprender idiomas, resolver dudas de tareas y crear historias divertidas. ¡La IA es tu compañero de aventuras!</p>
+            </div>
+            <div class="tip-card" data-tip="teen">
+                <h4>🎮 <span data-es="Para Adolescentes" data-en="For Teens">Para Adolescentes</span></h4>
+                <p data-es="Explora cómo la IA mejora tus videojuegos, úsala para estudiar más rápido y aprende a crear contenido cool para redes sociales." data-en="Explore how AI improves your video games, use it to study faster, and learn to create cool content for social media.">Explora cómo la IA mejora tus videojuegos, úsala para estudiar más rápido y aprende a crear contenido cool para redes sociales.</p>
+            </div>
+            <div class="tip-card" data-tip="joven">
+                <h4>💼 <span data-es="Para Jóvenes Adultos" data-en="For Young Adults">Para Jóvenes Adultos</span></h4>
+                <p data-es="Automatiza tareas repetitivas, usa IA para redactar emails profesionales, crea presentaciones en segundos y boost tu productividad." data-en="Automate repetitive tasks, use AI to write professional emails, create presentations in seconds, and boost your productivity.">Automatiza tareas repetitivas, usa IA para redactar emails profesionales, crea presentaciones en segundos y boost tu productividad.</p>
+            </div>
+            <div class="tip-card" data-tip="adulto">
+                <h4>🏠 <span data-es="Para Adultos" data-en="For Adults">Para Adultos</span></h4>
+                <p data-es="Organiza tu vida con IA: listas de compras automáticas, planificación de viajes, presupuestos inteligentes y más tiempo para tu familia." data-en="Organize your life with AI: automatic shopping lists, smart travel planning, intelligent budgets, and more time for your family.">Organiza tu vida con IA: listas de compras automáticas, planificación de viajes, presupuestos inteligentes y más tiempo para tu familia.</p>
+            </div>
+            <div class="tip-card" data-tip="mayor">
+                <h4>👴 <span data-es="Para Adultos Mayores" data-en="For Seniors">Para Adultos Mayores</span></h4>
+                <p data-es="La IA te ayuda a conectar con familiares, traduce idiomas para tus viajes, lee noticias en voz alta y responde tus dudas sin frustraciones." data-en="AI helps you connect with family, translates languages for your trips, reads news aloud, and answers your questions without frustration.">La IA te ayuda a conectar con familiares, traduce idiomas para tus viajes, lee noticias en voz alta y responde tus dudas sin frustraciones.</p>
+            </div>
+            <div class="tip-card" data-tip="todos">
+                <h4>🌟 <span data-es="Para Todos" data-en="For Everyone">Para Todos</span></h4>
+                <p data-es="La IA está aquí para ayudarte, no para remplacearte. Aprende a usarla como herramienta y verás cómo mejora tu vida día a día." data-en="AI is here to help you, not replace you. Learn to use it as a tool and you'll see how it improves your life day by day.">La IA está aquí para ayudarte, no para remplacearte. Aprende a usarla como herramienta y verás cómo mejora tu vida día a día.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <span class="logo-ia">IA</span><span class="logo-todos">Para Todos</span>
+        </div>
+        <p data-es="Democratizando el conocimiento de la inteligencia artificial para todos, especialmente en México y Latinoamérica." data-en="Democratizing artificial intelligence knowledge for everyone, especially in Mexico and Latin America.">Democratizando el conocimiento de la inteligencia artificial para todos, especialmente en México y Latinoamérica.</p>
+        <div class="footer-links">
+            <a href="#" data-es="Acerca de" data-en="About">Acerca de</a>
+            <a href="#" data-es="Contacto" data-en="Contact">Contacto</a>
+            <a href="#" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+            <a href="#" data-es="Términos" data-en="Terms">Términos</a>
+        </div>
+    </footer>
+
+    <!-- Bottom Sheet -->
+    <div class="bottom-sheet-overlay" id="sheetOverlay" onclick="cerrarPanel()"></div>
+    <div class="bottom-sheet" id="bottomSheet">
+        <div class="sheet-content">
+            <div class="drag-handle"></div>
+            <button class="close-btn" onclick="cerrarPanel()">✕</button>
+            
+            <div id="sheetContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Progress -->
+    <div class="floating-progress" id="floatingProgress">
+        <span class="icon">👁️</span>
+        <span class="count" id="progressCount">0</span>
+    </div>
+
+    <script>
+        // Global State
+        let estado = {
+            idioma: 'es',
+            tamano: 1,
+            contraste: false,
+            nivelActivo: 'todos',
+            edadActiva: 'todos',
+            leccionesVistas: new Set()
+        };
+
+        // Modules Data
+        const modulos = [
+            {
+                id: 1,
+                niv: 'basico',
+                eds: ['todos', 'nino', 'teen', 'joven', 'adulto', 'mayor'],
+                col: '#2563EB',
+                colc: '#EFF6FF',
+                emo: '🤖',
+                tit: { es: '¿Qué es la Inteligencia Artificial?', en: 'What is Artificial Intelligence?' },
+                des: { es: 'Aprende los conceptos básicos de la IA de forma simple y divertida.', en: 'Learn the basics of AI in a simple and fun way.' },
+                vid: '_tA5cinv0U8',
+                canal: { es: 'Educa', en: 'Educa' },
+                dur: '12:35',
+                yturl: 'https://www.youtube.com/watch?v=_tA5cinv0U8',
+                aprendes: { 
+                    es: ['Qué es la IA realmente', 'Cómo piensan las máquinas', 'Ejemplos cotidianos', 'Por qué importa hoy'], 
+                    en: ['What AI really is', 'How machines think', 'Everyday examples', 'Why it matters today'] 
+                },
+                ej: { 
+                    es: 'Cuando le preguntas a tu celular "¿Qué clima hace hoy?" y te responde, ¡estás usando IA!', 
+                    en: 'When you ask your phone "What\'s the weather today?" and it responds, you\'re using AI!' 
+                },
+                quiz: {
+                    q: { es: '¿Qué es la Inteligencia Artificial?', en: 'What is Artificial Intelligence?' },
+                    ops: { 
+                        es: ['Un robot grande', 'Una tecnología que permite a las máquinas aprender', 'Un juego de video', 'Un tipo de comida'], 
+                        en: ['A big robot', 'Technology that allows machines to learn', 'A video game', 'A type of food'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Correcto! La IA permite a las máquinas aprender de datos.', en: 'Correct! AI allows machines to learn from data.' },
+                    fail: { es: 'No es un robot. La IA es tecnología que permite aprender.', en: 'It\'s not a robot. AI is technology that enables learning.' }
+                },
+                links: [
+                    { l: '🤖 IBM What is AI', u: 'https://www.ibm.com/topics/artificial-intelligence', c: '#2563EB', b: '#EFF6FF' },
+                    { l: '📚 Wikipedia IA', u: 'https://es.wikipedia.org/wiki/Inteligencia_artificial', c: '#7C3AED', b: '#F5F3FF' }
+                ]
+            },
+            {
+                id: 2,
+                niv: 'basico',
+                eds: ['todos', 'joven', 'adulto', 'mayor'],
+                col: '#16A34A',
+                colc: '#F0FDF4',
+                emo: '💬',
+                tit: { es: 'ChatGPT desde Cero', en: 'ChatGPT from Scratch' },
+                des: { es: 'Domina ChatGPT sin conocimientos previos. Tutorial paso a paso.', en: 'Master ChatGPT without prior knowledge. Step by step tutorial.' },
+                vid: '_imU9QnfeR8',
+                canal: { es: 'Español', en: 'Spanish' },
+                dur: '18:24',
+                yturl: 'https://www.youtube.com/watch?v=_imU9QnfeR8',
+                dur: '12:35',
+                yturl: 'https://www.youtube.com/watch?v=8f5U5T1tH8U',
+                aprendes: { 
+                    es: ['Crear cuenta en ChatGPT', 'Escribir prompts efectivos', 'Usar ChatGPT para tareas', 'Errores comunes a evitar'], 
+                    en: ['Create ChatGPT account', 'Write effective prompts', 'Use ChatGPT for tasks', 'Common mistakes to avoid'] 
+                },
+                ej: { 
+                    es: 'Escribe "Explícame la fotosíntesis como si tuviera 5 años" y verás qué fácil lo entiende ChatGPT.', 
+                    en: 'Write "Explain photosynthesis to me like I\'m 5" and see how easily ChatGPT understands.' 
+                },
+                quiz: {
+                    q: { es: '¿Qué es ChatGPT?', en: 'What is ChatGPT?' },
+                    ops: { 
+                        es: ['Una red social', 'Un asistente de IA para conversaciones', 'Un juego', 'Una aplicación de fotos'], 
+                        en: ['A social network', 'An AI assistant for conversations', 'A game', 'A photo app'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Exacto! ChatGPT es un asistente de IA.', en: 'Exactly! ChatGPT is an AI assistant.' },
+                    fail: { es: 'No es una red social. Es un asistente de IA.', en: 'It\'s not a social network. It\'s an AI assistant.' }
+                },
+                links: [
+                    { l: '💬 ChatGPT', u: 'https://chat.openai.com', c: '#16A34A', b: '#F0FDF4' },
+                    { l: '📖 Guía OpenAI', u: 'https://platform.openai.com/docs', c: '#2563EB', b: '#EFF6FF' }
+                ]
+            },
+            {
+                id: 3,
+                niv: 'basico',
+                eds: ['mayor', 'todos'],
+                col: '#EA580C',
+                colc: '#FFF7ED',
+                emo: '👴',
+                tit: { es: 'IA para Adultos Mayores sin Miedo', en: 'AI for Seniors without Fear' },
+                des: { es: 'La IA explicada de forma sencilla y segura para adultos mayores.', en: 'AI explained simply and safely for seniors.' },
+                vid: 'O_uJhXzeIZE',
+                canal: { es: 'Koltin', en: 'Koltin' },
+                dur: '15:30',
+                yturl: 'https://www.youtube.com/watch?v=O_uJhXzeIZE',
+                canal: { es: 'Abuela Digital', en: 'Grandma Digital' },
+                dur: '15:20',
+                yturl: 'https://www.youtube.com/watch?v=JY9tXnqL4wE',
+                aprendes: { 
+                    es: ['Qué puede hacer la IA por ti', 'Cómo hablar con asistentes de voz', 'Seguridad básica en internet', 'No tener miedo de probar'], 
+                    en: ['What AI can do for you', 'How to talk to voice assistants', 'Basic internet safety', 'Not being afraid to try'] 
+                },
+                ej: { 
+                    es: 'Di "Ok Google, llama a mi hijo" o "Alexa, pon las noticias" y la IA te ayudará sin que tengas que usar botones.', 
+                    en: 'Say "Ok Google, call my son" or "Alexa, play the news" and AI will help without you having to use buttons.' 
+                },
+                quiz: {
+                    q: { es: '¿Para qué puede servirte la IA?', en: 'What can AI be used for?' },
+                    ops: { 
+                        es: ['Solo para jóvenes', 'Para llamar a familiares, saber el clima, escuchar música y más', 'Para trabajar', 'Para nada'], 
+                        en: ['Only for young people', 'To call family, check the weather, listen to music and more', 'To work', 'For nothing'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Correcto! La IA te ayuda en muchas tareas diarias.', en: 'Correct! AI helps you in many daily tasks.' },
+                    fail: { es: 'La IA sirve para muchas cosas útiles.', en: 'AI serves many useful purposes.' }
+                },
+                links: [
+                    { l: '🎤 Google Assistant', u: 'https://assistant.google.com', c: '#4285F4', b: '#E8F0FE' },
+                    { l: '🎤 Alexa', u: 'https://www.amazon.com/alexa', c: '#00CAFF', b: '#E0F7FF' }
+                ]
+            },
+            {
+                id: 4,
+                niv: 'basico',
+                eds: ['nino', 'teen', 'todos'],
+                col: '#8B5CF6',
+                colc: '#F5F3FF',
+                emo: '🎮',
+                tit: { es: 'IA en los Videojuegos', en: 'AI in Video Games' },
+                des: { es: 'Descubre cómo la inteligencia artificial hace tus juegos más realistas.', en: 'Discover how artificial intelligence makes your games more realistic.' },
+                vid: '0VOYpREq_p0',
+                canal: { es: 'TheGrefg', en: 'TheGrefg' },
+                dur: '14:20',
+                yturl: 'https://www.youtube.com/watch?v=0VOYpREq_p0',
+                canal: { es: 'Gamer Edu', en: 'Gamer Edu' },
+                dur: '10:15',
+                yturl: 'https://www.youtube.com/watch?v=W-aZ5zYzvBI',
+                aprendes: { 
+                    es: ['Qué es IA en juegos', 'Cómo los enemigos aprenden de ti', 'Personajes no jugadores inteligentes', 'El futuro de los juegos'], 
+                    en: ['What is AI in games', 'How enemies learn from you', 'Smart non-player characters', 'The future of gaming'] 
+                },
+                ej: { 
+                    es: 'En FIFA, los jugadores controlados por la IA hacen estrategias reales. ¡Eso no es una persona, es IA!', 
+                    en: 'In FIFA, players controlled by AI make real strategies. That\'s not a person, it\'s AI!' 
+                },
+                quiz: {
+                    q: { es: '¿Cómo usa la IA los videojuegos?', en: 'How do video games use AI?' },
+                    ops: { 
+                        es: ['No la usan', 'Para crear enemigos inteligentes y personajes realistas', 'Solo para gráficos', 'Para cargar el juego'], 
+                        en: ['They don\'t use it', 'To create intelligent enemies and realistic characters', 'Only for graphics', 'To load the game'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Exacto! La IA hace los juegos más inteligentes.', en: 'Exactly! AI makes games smarter.' },
+                    fail: { es: 'La IA se usa para mucho más que gráficos.', en: 'AI is used for much more than graphics.' }
+                },
+                links: [
+                    { l: '🎮 Unity IA', u: 'https://unity.com/', c: '#8B5CF6', b: '#F5F3FF' },
+                    { l: '🎮 Unreal Engine', u: 'https://www.unrealengine.com/', c: '#313131', b: '#E0E0E0' }
+                ]
+            },
+            {
+                id: 5,
+                niv: 'avanzado',
+                eds: ['joven', 'adulto', 'todos'],
+                col: '#7C3AED',
+                colc: '#F5F3FF',
+                emo: '🎭',
+                tit: { es: 'Prompts Avanzados: Técnica del Rol', en: 'Advanced Prompts: Role Technique' },
+                des: { es: 'Aprende a usar la técnica del rol para obtener respuestas profesionales.', en: 'Learn to use role technique for professional responses.' },
+                vid: 'DsbWPfGfGTA',
+                canal: { es: 'AI & ChatGPT', en: 'AI & ChatGPT' },
+                dur: '22:15',
+                yturl: 'https://www.youtube.com/watch?v=DsbWPfGfGTA',
+                canal: { es: 'IA Mastery', en: 'IA Mastery' },
+                dur: '18:42',
+                yturl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                aprendes: { 
+                    es: ['Qué es la técnica del rol', 'Cómo definir personalidad IA', 'Aplicar en trabajo y estudio', 'Casos de uso profesionales'], 
+                    en: ['What is the role technique', 'How to define AI personality', 'Apply in work and study', 'Professional use cases'] 
+                },
+                ej: { 
+                    es: '"Actúa como un chef profesional italiano y dime cómo hacer pasta deshecha desde cero"', 
+                    en: '"Act as a professional Italian chef and tell me how to make pasta from scratch"' 
+                },
+                quiz: {
+                    q: { es: '¿Qué es la técnica del rol?', en: 'What is the role technique?' },
+                    ops: { 
+                        es: ['Poner un disfraz a la IA', 'Pedir a la IA que actúe como experto en algo', 'Escribir muy largo', 'Usar emojis'], 
+                        en: ['Put a costume on AI', 'Ask AI to act as an expert in something', 'Write very long', 'Use emojis'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Correcto! Defines un rol para obtener mejores respuestas.', en: 'Correct! You define a role to get better responses.' },
+                    fail: { es: 'La técnica del rol define un personaje o experto.', en: 'The role technique defines a character or expert.' }
+                },
+                links: [
+                    { l: '📝 Prompt Engineering', u: 'https://www.promptingguide.ai/', c: '#7C3AED', b: '#F5F3FF' },
+                    { l: '📚 Learn Prompting', u: 'https://learnprompting.org/', c: '#2563EB', b: '#EFF6FF' }
+                ]
+            },
+            {
+                id: 6,
+                niv: 'intermedio',
+                eds: ['joven', 'adulto', 'todos'],
+                col: '#0EA5E9',
+                colc: '#F0F9FF',
+                emo: '⏰',
+                tit: { es: 'IA en el Trabajo: Ahorra Tiempo', en: 'AI at Work: Save Time' },
+                des: { es: 'Optimiza tu productividad laboral con estas herramientas de IA.', en: 'Optimize your work productivity with these AI tools.' },
+                vid: '2CeXUcV5a9g',
+                canal: { es: 'Coursera', en: 'Coursera' },
+                dur: '10:45',
+                yturl: 'https://www.youtube.com/watch?v=2CeXUcV5a9g',
+                canal: { es: 'Productividad Pro', en: 'Productivity Pro' },
+                dur: '14:28',
+                yturl: 'https://www.youtube.com/watch?v=hVbN9N2bgHw',
+                aprendes: { 
+                    es: ['Redactar emails rápido', 'Resumir reuniones', 'Crear presentaciones', 'Organizar tareas con IA'], 
+                    en: ['Write emails quickly', 'Summarize meetings', 'Create presentations', 'Organize tasks with AI'] 
+                },
+                ej: { 
+                    es: 'Pide a ChatGPT "Resume este artículo de 2000 palabras en 5 puntos clave" y lo hará en segundos.', 
+                    en: 'Ask ChatGPT "Summarize this 2000-word article in 5 key points" and it will do it in seconds.' 
+                },
+                quiz: {
+                    q: { es: '¿Cómo puede ayudar la IA en el trabajo?', en: 'How can AI help at work?' },
+                    ops: { 
+                        es: ['No puede', 'Redactar emails, resumir documentos y crear presentaciones', 'Solo para chefs', 'Para jugar'], 
+                        en: ['It can\'t', 'Write emails, summarize documents and create presentations', 'Only for chefs', 'To play'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Exacto! La IA ahorra tiempo en muchas tareas.', en: 'Exactly! AI saves time on many tasks.' },
+                    fail: { es: 'La IA tiene muchos usos laborales.', en: 'AI has many work uses.' }
+                },
+                links: [
+                    { l: '📧 Grammarly', u: 'https://www.grammarly.com/', c: '#16A34A', b: '#F0FDF4' },
+                    { l: '📊 Notion AI', u: 'https://www.notion.so/product/ai', c: '#000000', b: '#E0E0E0' }
+                ]
+            },
+            {
+                id: 7,
+                niv: 'intermedio',
+                eds: ['todos', 'joven', 'adulto', 'teen'],
+                col: '#F59E0B',
+                colc: '#FFFBEB',
+                emo: '🖼️',
+                tit: { es: 'Crear Imágenes con IA sin Diseño', en: 'Create Images with AI without Design' },
+                des: { es: 'Diseña gráficos impresionantes sin saber usar Photoshop.', en: 'Design impressive graphics without knowing how to use Photoshop.' },
+                vid: 'lS-opyizAM0',
+                canal: { es: 'Midjourney', en: 'Midjourney' },
+                dur: '16:30',
+                yturl: 'https://www.youtube.com/watch?v=lS-opyizAM0',
+                canal: { es: 'Diseño Fácil', en: 'Easy Design' },
+                dur: '11:55',
+                yturl: 'https://www.youtube.com/watch?v=GQ2O2YFkD0s',
+                aprendes: { 
+                    es: ['Usar Midjourney y DALL-E', 'Describir lo que quieres', 'Estilos y composiciones', 'Crear portadas y posts'], 
+                    en: ['Use Midjourney and DALL-E', 'Describe what you want', 'Styles and compositions', 'Create covers and posts'] 
+                },
+                ej: { 
+                    es: 'Escribe "Un gato astronauta en el espacio, estilo Pixar, colores vibrantes" y verás la magia.', 
+                    en: 'Write "A cat astronaut in space, Pixar style, vibrant colors" and see the magic.' 
+                },
+                quiz: {
+                    q: { es: '¿Qué herramienta puedes usar para crear imágenes con IA?', en: 'What tool can you use to create images with AI?' },
+                    ops: { 
+                        es: ['Microsoft Word', 'Midjourney o DALL-E', 'Calculadora', 'Bloc de notas'], 
+                        en: ['Microsoft Word', 'Midjourney or DALL-E', 'Calculator', 'Notepad'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Correcto! Midjourney y DALL-E crean imágenes amazing.', en: 'Correct! Midjourney and DALL-E create amazing images.' },
+                    fail: { es: 'Necesitas herramientas especiales de IA generativa.', en: 'You need special generative AI tools.' }
+                },
+                links: [
+                    { l: '🎨 Midjourney', u: 'https://www.midjourney.com/', c: '#8B5CF6', b: '#F5F3FF' },
+                    { l: '🎨 DALL-E', u: 'https://openai.com/dall-e-3', c: '#16A34A', b: '#F0FDF4' }
+                ]
+            },
+            {
+                id: 8,
+                niv: 'intermedio',
+                eds: ['joven', 'adulto', 'todos'],
+                col: '#EC4899',
+                colc: '#FDF2F8',
+                emo: '🏪',
+                tit: { es: 'IA para Negocios y Tiendas', en: 'AI for Businesses and Shops' },
+                des: { es: 'Impulsa tus ventas con inteligencia artificial sin ser técnico.', en: 'Boost your sales with artificial intelligence without being technical.' },
+                vid: 'YxAFvoLVRbs',
+                canal: { es: 'IA Productivity', en: 'IA Productivity' },
+                dur: '20:10',
+                yturl: 'https://www.youtube.com/watch?v=YxAFvoLVRbs',
+                canal: { es: 'Negocio Digital', en: 'Digital Business' },
+                dur: '16:30',
+                yturl: 'https://www.youtube.com/watch?v=KJH4vT4JWPw',
+                aprendes: { 
+                    es: ['Atención al cliente con chatbots', 'Recomendaciones de productos', 'Análisis de ventas', 'Marketing automatizado'], 
+                    en: ['Customer service with chatbots', 'Product recommendations', 'Sales analysis', 'Automated marketing'] 
+                },
+                ej: { 
+                    es: 'Un restaurante puede usar un chatbot para tomar pedidos por WhatsApp automáticamente 24/7.', 
+                    en: 'A restaurant can use a chatbot to take orders via WhatsApp automatically 24/7.' 
+                },
+                quiz: {
+                    q: { es: '¿Cómo puede ayudar la IA a una tienda?', en: 'How can AI help a store?' },
+                    ops: { 
+                        es: ['No puede', 'Atender clientes, recomendar productos y analizar ventas', 'Solo para bancos', 'Para conducir'], 
+                        en: ['It can\'t', 'Serve customers, recommend products and analyze sales', 'Only for banks', 'To drive'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Exacto! La IA mejora muchos aspectos del negocio.', en: 'Exactly! AI improves many aspects of business.' },
+                    fail: { es: 'La IA tiene muchos usos comerciales.', en: 'AI has many business uses.' }
+                },
+                links: [
+                    { l: '💬 ManyChat', u: 'https://manychat.com/', c: '#8B5CF6', b: '#F5F3FF' },
+                    { l: '📊 Google Analytics', u: 'https://analytics.google.com/', c: '#F59E0B', b: '#FFFBEB' }
+                ]
+            },
+            {
+                id: 9,
+                niv: 'avanzado',
+                eds: ['joven', 'adulto', 'todos'],
+                col: '#06B6D4',
+                colc: '#ECFEFF',
+                emo: '⚡',
+                tit: { es: 'Automatización: Make y Zapier', en: 'Automation: Make and Zapier' },
+                des: { es: 'Conecta tus apps y automatiza tareas repetitivas sin código.', en: 'Connect your apps and automate repetitive tasks without code.' },
+                vid: 'vmsu3L4y4ro',
+                canal: { es: 'Zapier', en: 'Zapier' },
+                dur: '25:00',
+                yturl: 'https://www.youtube.com/watch?v=vmsu3L4y4ro',
+                canal: { es: 'Automa Todo', en: 'Automate Everything' },
+                dur: '20:15',
+                yturl: 'https://www.youtube.com/watch?v=2El4z2n7c',
+                aprendes: { 
+                    es: ['Qué es automatización', 'Crear Zaps en Zapier', 'Crear escenarios en Make', 'Ahorrar horas de trabajo'], 
+                    en: ['What is automation', 'Create Zaps in Zapier', 'Create scenarios in Make', 'Save work hours'] 
+                },
+                ej: { 
+                    es: 'Crea un automatismo que guarde todos los archivos de Gmail en Dropbox automáticamente.', 
+                    en: 'Create an automation that automatically saves all Gmail files to Dropbox.' 
+                },
+                quiz: {
+                    q: { es: '¿Qué hacen Make y Zapier?', en: 'What do Make and Zapier do?' },
+                    ops: { 
+                        es: ['Cocinar comida', 'Conectar apps y automatizar tareas', 'Solo para médicos', 'Para hacer ejercicio'], 
+                        en: ['Cook food', 'Connect apps and automate tasks', 'Only for doctors', 'To exercise'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Correcto! Automatizan tareas entre aplicaciones.', en: 'Correct! They automate tasks between applications.' },
+                    fail: { es: 'Son herramientas de automatización sin código.', en: 'They are no-code automation tools.' }
+                },
+                links: [
+                    { l: '⚡ Zapier', u: 'https://zapier.com/', c: '#F59E0B', b: '#FFFBEB' },
+                    { l: '⚡ Make', u: 'https://www.make.com/', c: '#2563EB', b: '#EFF6FF' }
+                ]
+            },
+            {
+                id: 10,
+                niv: 'avanzado',
+                eds: ['joven', 'adulto', 'todos'],
+                col: '#84CC16',
+                colc: '#F7FEE7',
+                emo: '🤖',
+                tit: { es: 'Agentes de IA Autónomos', en: 'Autonomous AI Agents' },
+                des: { es: 'La siguiente generación de IA que hace tareas complejas por ti.', en: 'The next generation of AI that does complex tasks for you.' },
+                vid: 'qclTDr5TZqA',
+                canal: { es: 'AutoGPT', en: 'AutoGPT' },
+                dur: '18:45',
+                yturl: 'https://www.youtube.com/watch?v=qclTDr5TZqA',
+                canal: { es: 'Futuro Tech', en: 'Future Tech' },
+                dur: '17:48',
+                yturl: 'https://www.youtube.com/watch?v=uJx8i_cTtZw',
+                aprendes: { 
+                    es: ['Qué son los agentes IA', 'Autonomous Task Execution', 'Herramientas como AgentGPT', 'El futuro del trabajo'], 
+                    en: ['What AI agents are', 'Autonomous task execution', 'Tools like AgentGPT', 'The future of work'] 
+                },
+                ej: { 
+                    es: 'Dile a un agente "Busca las 5 mejores portátiles de 2024 y hazme un comparativo" y lo hará solo.', 
+                    en: 'Tell an agent "Find the 5 best laptops of 2024 and make me a comparison" and it will do it alone.' 
+                },
+                quiz: {
+                    q: { es: '¿Qué es un agente de IA?', en: 'What is an AI agent?' },
+                    ops: { 
+                        es: ['Un robot físico', 'Un programa que hace tareas automáticamente', 'Una persona', 'Un juego'], 
+                        en: ['A physical robot', 'A program that does tasks automatically', 'A person', 'A game'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Exacto! Los agentes automatizan tareas complejas.', en: 'Exactly! Agents automate complex tasks.' },
+                    fail: { es: 'No es un robot, es software inteligente.', en: 'It\'s not a robot, it\'s intelligent software.' }
+                },
+                links: [
+                    { l: '🤖 AgentGPT', u: 'https://agentgpt.reworkd.ai/', c: '#2563EB', b: '#EFF6FF' },
+                    { l: '🤖 AutoGPT', u: 'https://github.com/Significant-Gravitas/AutoGPT', c: '#1E293B', b: '#E0E0E0' }
+                ]
+            },
+            {
+                id: 11,
+                niv: 'basico',
+                eds: ['todos', 'joven', 'adulto', 'teen'],
+                col: '#EF4444',
+                colc: '#FEF2F2',
+                emo: '🔒',
+                tit: { es: 'Seguridad, Privacidad y Deepfakes', en: 'Security, Privacy and Deepfakes' },
+                des: { es: 'Protégete en internet y aprende a detectar contenido falso.', en: 'Protect yourself online and learn to detect fake content.' },
+                vid: 'qrFpxHmVzrE',
+                canal: { es: 'BBC', en: 'BBC' },
+                dur: '13:50',
+                yturl: 'https://www.youtube.com/watch?v=qrFpxHmVzrE',
+                canal: { es: 'Seguridad Digital', en: 'Digital Security' },
+                dur: '13:22',
+                yturl: 'https://www.youtube.com/watch?v=9-A7UN7-bg',
+                aprendes: { 
+                    es: ['Qué son deepfakes', 'Cómo proteger tus datos', 'Detectar noticias falsas', 'Contraseñas seguras'], 
+                    en: ['What deepfakes are', 'How to protect your data', 'Detect fake news', 'Secure passwords'] 
+                },
+                ej: { 
+                    es: 'Si recibes un video de un familiar pidiendo dinero urgente, ¡llámalo primero! Podría ser un deepfake.', 
+                    en: 'If you receive a video from a family member urgently asking for money, call them first! It could be a deepfake.' 
+                },
+                quiz: {
+                    q: { es: '¿Qué es un deepfake?', en: 'What is a deepfake?' },
+                    ops: { 
+                        es: ['Un tipo de espejo', 'Video o audio falso creado con IA', 'Una aplicación', 'Un virus'], 
+                        en: ['A type of mirror', 'Fake video or audio created with AI', 'An application', 'A virus'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Correcto! Los deepfakes pueden engañarnos.', en: 'Correct! Deepfakes can deceive us.' },
+                    fail: { es: 'Son contenido falso generado por IA.', en: 'They are fake content generated by AI.' }
+                },
+                links: [
+                    { l: '🔍 Have I Been Pwned', u: 'https://haveibeenpwned.com/', c: '#EF4444', b: '#FEF2F2' },
+                    { l: '🔐 Gestores de contraseñas', u: 'https://bitwarden.com/', c: '#16A34A', b: '#F0FDF4' }
+                ]
+            },
+            {
+                id: 12,
+                niv: 'intermedio',
+                eds: ['todos', 'joven', 'adulto'],
+                col: '#14B8A6',
+                colc: '#F0FDFA',
+                emo: '🔮',
+                tit: { es: 'El Futuro de la IA 2026-2027', en: 'The Future of AI 2026-2027' },
+                des: { es: 'Descubre qué viene pronto en inteligencia artificial.', en: 'Discover what\'s coming soon in artificial intelligence.' },
+                vid: 'igbW97BKWw0',
+                canal: { es: 'TechVision', en: 'TechVision' },
+                dur: '19:25',
+                yturl: 'https://www.youtube.com/watch?v=igbW97BKWw0',
+                canal: { es: 'TrendTech', en: 'TrendTech' },
+                dur: '19:05',
+                yturl: 'https://www.youtube.com/watch?v=l9m9T9kE7aQ',
+                aprendes: { 
+                    es: ['Tendencias emergentes', 'IA multimodal', 'Impacto en empleos', 'Preparación para el futuro'], 
+                    en: ['Emerging trends', 'Multimodal AI', 'Impact on jobs', 'Preparing for the future'] 
+                },
+                ej: { 
+                    es: 'Pronto la IA entenderá lo que ves, oyes y dices al mismo tiempo. ¡Será como tener un asistente humano!', 
+                    en: 'Soon AI will understand what you see, hear, and say at the same time. It will be like having a human assistant!' 
+                },
+                quiz: {
+                    q: { es: '¿Qué es la IA multimodal?', en: 'What is multimodal AI?' },
+                    ops: { 
+                        es: ['IA que solo lee texto', 'IA que entiende texto, imagen, audio y video', 'IA muy lenta', 'IA que solo juega'], 
+                        en: ['AI that only reads text', 'AI that understands text, image, audio and video', 'AI that is very slow', 'AI that only plays'] 
+                    },
+                    c: 1,
+                    ok: { es: '¡Exacto! La IA multimodal lo entiende todo.', en: 'Exactly! Multimodal AI understands everything.' },
+                    fail: { es: 'Es IA que procesa múltiples tipos de información.', en: 'It\'s AI that processes multiple types of information.' }
+                },
+                links: [
+                    { l: '🔮 OpenAI', u: 'https://openai.com/', c: '#16A34A', b: '#F0FDF4' },
+                    { l: '🔮 Anthropic', u: 'https://www.anthropic.com/', c: '#F59E0B', b: '#FFFBEB' }
+                ]
+            }
+        ];
+
+        // Render Functions
+        function renderModules() {
+            const grid = document.getElementById('modulesGrid');
+            const filtrados = modulos.filter(m => {
+                const nivelMatch = estado.nivelActivo === 'todos' || m.niv === estado.nivelActivo;
+                const edadMatch = estado.edadActiva === 'todos' || m.eds.includes(estado.edadActiva);
+                return nivelMatch && edadMatch;
+            });
+
+            if (filtrados.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-message">
+                        <div class="emoji">🔍</div>
+                        <p data-es="No hay lecciones para estos filtros. Prueba otras opciones." data-en="No lessons for these filters. Try other options.">No hay lecciones para estos filtros. Prueba otras opciones.</p>
+                    </div>
+                `;
+                aplicarIdioma();
+                return;
+            }
+
+            grid.innerHTML = filtrados.map((m, i) => `
+                <div class="module-card" style="animation-delay: ${i * 60}ms" onclick="abrirPanel(${m.id})">
+                    <div class="module-thumb">
+                        <img src="https://img.youtube.com/vi/${m.vid}/hqdefault.jpg" alt="${m.tit[estado.idioma]}">
+                        <div class="overlay">
+                            <div class="play-btn"></div>
+                        </div>
+                        <span class="badge-level" style="background: ${m.col}">${m.niv === 'basico' ? (estado.idioma === 'es' ? 'Básico' : 'Basic') : m.niv === 'intermedio' ? (estado.idioma === 'es' ? 'Intermedio' : 'Intermediate') : (estado.idioma === 'es' ? 'Avanzado' : 'Advanced')}</span>
+                        <span class="badge-duration">${m.dur}</span>
+                        <span class="badge-yt">▶ YouTube</span>
+                    </div>
+                    <div class="module-content">
+                        <h3>${m.emo} ${m.tit[estado.idioma]}</h3>
+                        <p>${m.des[estado.idioma]}</p>
+                        <div class="module-footer">
+                            <span class="channel-name">${m.canal[estado.idioma]}</span>
+                            <button class="btn-ver" data-es="Ver lección" data-en="View lesson">Ver lección</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Add animation classes
+            setTimeout(() => {
+                document.querySelectorAll('.module-card').forEach(card => card.classList.add('vis'));
+            }, 100);
+
+            aplicarIdioma();
+        }
+
+        function abrirPanel(id) {
+            const modulo = modulos.find(m => m.id === id);
+            if (!modulo) return;
+
+            // Track progress
+            estado.leccionesVistas.add(id);
+            actualizarProgreso();
+
+            const sheet = document.getElementById('bottomSheet');
+            const overlay = document.getElementById('sheetOverlay');
+            const content = document.getElementById('sheetContent');
+
+            content.innerHTML = `
+                <div class="sheet-header">
+                    <span class="badge-level" style="background: ${modulo.col}">${modulo.niv === 'basico' ? (estado.idioma === 'es' ? 'Básico' : 'Basic') : modulo.niv === 'intermedio' ? (estado.idioma === 'es' ? 'Intermedio' : 'Intermediate') : (estado.idioma === 'es' ? 'Avanzado' : 'Advanced')}</span>
+                    <h2>${modulo.emo} ${modulo.tit[estado.idioma]}</h2>
+                    <p class="description">${modulo.des[estado.idioma]}</p>
+                </div>
+
+                <!-- Video embebido -->
+                <div class="video-embed">
+                    <iframe 
+                        src="https://www.youtube.com/embed/${modulo.vid}?rel=0&modestbranding=1&playsinline=1"
+                        title="${modulo.tit[estado.idioma]}"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <a href="${modulo.yturl}" target="_blank" class="btn-youtube">
+                    <span class="icon"></span>
+                    <span data-es="▶️ Ver en YouTube (externo)" data-en="▶️ Watch on YouTube (external)">▶️ Ver en YouTube (externo)</span>
+                </a>
+
+                <div class="sheet-buttons">
+                    <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(modulo.tit[estado.idioma])}" target="_blank" class="btn" data-es="🔍 Más videos en YouTube" data-en="🔍 More videos on YouTube">🔍 Más videos en YouTube</a>
+                    <a href="https://www.google.com/search?q=${encodeURIComponent(modulo.tit[estado.idioma])}" target="_blank" class="btn" data-es="🔍 Buscar en Google" data-en="🔍 Search on Google">🔍 Buscar en Google</a>
+                </div>
+
+                <div class="sheet-section">
+                    <h4>✅ <span data-es="En esta lección aprenderás" data-en="In this lesson you will learn">En esta lección aprenderás</span></h4>
+                    <ul class="learn-list">
+                        ${modulo.aprendes[estado.idioma].map(a => `
+                            <li><span class="check">✓</span> ${a}</li>
+                        `).join('')}
+                    </ul>
+                </div>
+
+                <div class="sheet-section">
+                    <div class="example-box">
+                        <span class="label">💡 <span data-es="Ejemplo real" data-en="Real example">Ejemplo real</span></span>
+                        <p>${modulo.ej[estado.idioma]}</p>
+                    </div>
+                </div>
+
+                <div class="sheet-section">
+                    <h4>📚 <span data-es="Recursos gratuitos" data-en="Free resources">Recursos gratuitos</span></h4>
+                    <div class="resources-chips">
+                        ${modulo.links.map(l => `
+                            <a href="${l.u}" target="_blank" class="resource-chip" style="color: ${l.c}; background: ${l.b}">${l.l}</a>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="quiz-section">
+                    <h4>🎯 <span data-es="Quiz: ¿Aprendiste?" data-en="Quiz: Did you learn?">Quiz: ¿Aprendiste?</span></h4>
+                    <p class="quiz-question">${modulo.quiz.q[estado.idioma]}</p>
+                    <div class="quiz-options">
+                        ${modulo.quiz.ops[estado.idioma].map((op, i) => `
+                            <div class="quiz-option" onclick="responderQuiz(${modulo.id}, ${i}, this)">
+                                <span class="letter">${['A', 'B', 'C', 'D'][i]}</span>
+                                <span class="text">${op}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="quiz-feedback" id="quizFeedback"></div>
+                </div>
+            `;
+
+            sheet.classList.add('on');
+            overlay.classList.add('on');
+            document.body.style.overflow = 'hidden';
+
+            aplicarIdioma();
+        }
+
+        function cerrarPanel() {
+            const sheet = document.getElementById('bottomSheet');
+            const overlay = document.getElementById('sheetOverlay');
+            sheet.classList.remove('on');
+            overlay.classList.remove('on');
+            document.body.style.overflow = '';
+        }
+
+        function responderQuiz(moduloId, opcion, elemento) {
+            const modulo = modulos.find(m => m.id === moduloId);
+            if (!modulo) return;
+
+            // Disable all options
+            document.querySelectorAll('.quiz-option').forEach(el => {
+                el.classList.add('disabled');
+                el.onclick = null;
+            });
+
+            const esCorrecta = opcion === modulo.quiz.c;
+            const feedback = document.getElementById('quizFeedback');
+
+            if (esCorrecta) {
+                elemento.classList.add('correct');
+                feedback.className = 'quiz-feedback show ok';
+                feedback.innerHTML = `✅ ${modulo.quiz.ok[estado.idioma]}`;
+            } else {
+                elemento.classList.add('incorrect');
+                document.querySelectorAll('.quiz-option')[modulo.quiz.c].classList.add('correct');
+                feedback.className = 'quiz-feedback show fail';
+                feedback.innerHTML = `❌ ${modulo.quiz.fail[estado.idioma]}`;
+            }
+        }
+
+        // Filter Functions
+        function filtrarNivel(nivel) {
+            estado.nivelActivo = nivel;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('on');
+                if (btn.dataset.level === nivel) btn.classList.add('on');
+            });
+
+            renderModules();
+            document.getElementById('lecciones').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function seleccionarEdad(edad) {
+            estado.edadActiva = edad;
+            
+            document.querySelectorAll('.age-card').forEach(card => {
+                card.classList.remove('on');
+                if (card.dataset.age === edad) card.classList.add('on');
+            });
+
+            renderModules();
+            document.getElementById('lecciones').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Accessibility Functions
+        function tamTexto(tamano) {
+            estado.tamano = tamano;
+            document.body.classList.remove('grande', 'gigante');
+            if (tamano === 2) document.body.classList.add('grande');
+            if (tamano === 3) document.body.classList.add('gigante');
+
+            document.querySelectorAll('.size-btn').forEach(btn => btn.classList.remove('on'));
+            document.querySelectorAll('.size-btn')[tamano - 1].classList.add('on');
+        }
+
+        function contraste() {
+            estado.contraste = !estado.contraste;
+            document.body.classList.toggle('contraste');
+            document.querySelector('.contrast-btn').classList.toggle('on');
+        }
+
+        function idioma(idioma) {
+            estado.idioma = idioma;
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('on'));
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if (btn.textContent.includes(idioma === 'es' ? 'ES' : 'EN')) btn.classList.add('on');
+            });
+
+            aplicarIdioma();
+            renderModules();
+        }
+
+        function aplicarIdioma() {
+            document.querySelectorAll('[data-es][data-en]').forEach(el => {
+                const texto = el.dataset[estado.idioma];
+                if (texto) el.textContent = texto;
+            });
+        }
+
+        // Progress
+        function actualizarProgreso() {
+            const progress = document.getElementById('floatingProgress');
+            const count = document.getElementById('progressCount');
+            
+            count.textContent = estado.leccionesVistas.size;
+            progress.classList.add('show');
+
+            clearTimeout(window.progressTimeout);
+            window.progressTimeout = setTimeout(() => {
+                progress.classList.remove('show');
+            }, 2800);
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('vis');
+                }
+            });
+        }, { threshold: 0.08 });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderModules();
+            
+            // Observe tip cards
+            document.querySelectorAll('.tip-card').forEach(card => {
+                observer.observe(card);
+            });
+        });
+
+        // Close sheet on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') cerrarPanel();
+        });
+    </script>
+</body>
+</html>
